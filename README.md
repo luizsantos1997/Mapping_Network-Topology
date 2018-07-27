@@ -16,7 +16,7 @@ MAC.csv need to receive the switch mac-address table
 RESULT.csv will be filled by the script
 
 # Working
-the script only support two column and the order have to be interface Number,Mac-address like example:
+the script only support two column and the order have to be interface Number or IP Address,Mac-address like example:
 
 MAC.csv
 g1/0/1,xxxx-xxxx-xxxx
