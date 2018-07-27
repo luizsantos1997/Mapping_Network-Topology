@@ -15,15 +15,14 @@ with open('IP.csv','r',newline='\n',encoding='utf-16') as csvip:    # OPEN FILE 
     for i in readerr:                                            # A LIST RECOGNIZED FILE WILL GENERATE AN ERROR
         lista_ip.append(i)                                          # TO CHECK THIS USE "type(variable)"
 
-print("PASSED HERE")
+
 
 # OPEN FILE TO INSERT THE RESULT OF MATCH
 
 printer = open('RESULT.csv',"w")
 
 
-# MATCH MAC ADDRESS ON IP.CSV FILE AND MAC.CSV AND INSERT STRUCTURED DATA ON A NEW LIST
-print("PASSED HERE TOO")
+# MATCH MAC ADDRESS ON IP.CSV FILE AND MAC.CSV AND INSERT STRUCTURED DATA ON A NEW LISTprint("PASSED HERE TOO")
 
 
 for x in range(0,lista_ip.__len__()):    # RUN A LOOP WITH THE LENGTH OF lista_ip
