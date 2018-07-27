@@ -1,47 +1,48 @@
 import csv
-from typing import TextIO
 
-printer = open('RESULT.csv',"r")
-conteudo = []
-lista_ip = []
 lista_mac = []
-with open('IP.csv', newline='\n') as csvfile1:
-    # o nome 'spamreader' abaixo é só exemplo, poderia ser qq. coisa
-    spamreader = csv.reader(csvfile1, delimiter=',') # separe por vírgula
+lista_ip = []
+conteudo = []
 
-    # o módulo csv detectará novas linhas automaticamente
-    for linha in spamreader:
-        lista_ip.append(linha)
-with open('MAC.csv', newline='\n') as csvfile2:
-    # o nome 'spamreader' abaixo é só exemplo, poderia ser qq. coisa
-    spamreader = csv.reader(csvfile2, delimiter=',') # separe por vírgula
+with open('MAC.csv','r', newline='\n', encoding='utf-8') as csvmac:  # OPEN FILE WITH MAC ADDRESS
+    reader = csv.reader(csvmac, delimiter=',')
+    for x in reader:
+        lista_mac.append(x)
 
-    # o módulo csv detectará novas linhas automaticamente
-    for linha in spamreader:
-        lista_mac.append(linha)
+with open('IP.csv','r',newline='\n',encoding='utf-16') as csvip:    # OPEN FILE WITH IP ADDRESS
+    readerr = csv.reader(csvip, delimiter=',')                   # OBS: UTF-16 ENCONDIG NECESSARY WHEN PYTHON DON´T
+                                                                    # RECOGNIZE THE FILE AS A LIST TYPE. USE ENCONDIG ON
+    for i in readerr:                                            # A LIST RECOGNIZED FILE WILL GENERATE AN ERROR
+        lista_ip.append(i)                                          # TO CHECK THIS USE "type(variable)"
 
-for x in range(0,lista_ip.__len__()):
-    for y in range(0,lista_ip.__len__()):
-        if lista_ip[x][1] == lista_mac[y][1]:
+print("PASSED HERE")
 
-            conteudo.append([lista_ip[x][0], ";", lista_mac[x][1], ";", lista_mac[x][0]])
-
+# OPEN FILE TO INSERT THE RESULT OF MATCH
 
 printer = open('RESULT.csv',"w")
 
+
+# MATCH MAC ADDRESS ON IP.CSV FILE AND MAC.CSV AND INSERT STRUCTURED DATA ON A NEW LIST
+print("PASSED HERE TOO")
+
+
+for x in range(0,lista_ip.__len__()):    # RUN A LOOP WITH THE LENGTH OF lista_ip
+
+    for z in range(0,lista_mac.__len__()):  # RUN A LOOP WITH THE LENGTH OF lista_MAC
+
+        if lista_ip[x][1] == lista_mac[z][1]:   # COMPARE THE COLUMN 1 ( SECOND ELEMENT ) AT EACH LIST,
+                                                # THAT SHOULD HAVE THE MAC ADDRESS
+
+            conteudo.append([lista_ip[x][0], lista_mac[x][1],lista_mac[x][0]])   # ADD MATCH VALUES ON A NEW LIST
+
+print()
 for item in conteudo:
-  printer.write("%s\n" % item)
+    printer.write("%s\n" % item)
 
 
-csvfile1.close()
-csvfile2.close()
+# FOR CLOSE THE OPENS FILES
+csvmac.close()
+csvip.close()
 printer.close()
-# insira seu conteúdo
-# obs: o método append() é proveniente de uma lista
-#conteudo.append('Nova linha')
-#print(conteudo)
-# Abre novamente o arquivo (escrita)
-# e escreva o conteúdo criado anteriormente nele.
-#arquivo = open('Oi.txt', 'w')
-#arquivo.writelines(conteudo)
-#arquivo.close()
+
+# END PROGRAM
